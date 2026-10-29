@@ -2,7 +2,7 @@
     "name": "zerofront/zero",
     "description": "Zero for Magento Open Source: the storefront theme and the modules every store needs (checkout, search, SEO, content, mail, payments), in one require.",
     "type": "metapackage",
-    "version": "1.3.3",
+    "version": "1.3.4",
     "license": [
         "OSL-3.0",
         "AFL-3.0"

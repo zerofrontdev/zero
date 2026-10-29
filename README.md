@@ -44,7 +44,7 @@ of `zerofront/zero`.
 | Storefront | [`zerofront/module-zero-core`](https://github.com/zerofrontdev/module-zero-core) | ✓ | Storefront core for the Zero theme (HTMX fragments for private content, view models, no Knockout) |
 | Storefront | [`zerofront/module-zero-checkout`](https://github.com/zerofrontdev/module-zero-checkout) | ✓ | A one-page checkout without Knockout: server-rendered HTML, one native form, HTMX for the parts that refresh |
 | Storefront | [`zerofront/module-zero-instant-navigation`](https://github.com/zerofrontdev/module-zero-instant-navigation) | ✓ | The next page loads while the shopper still points at its link (Speculation Rules API) |
-| Content | [`zerofront/module-zero-banner`](https://github.com/zerofrontdev/module-zero-banner) | ✓ | Banners and sliders managed in the admin, rendered without JavaScript (CSS scroll snap) |
+| Content | [`zerofront/module-zero-banner`](https://github.com/zerofrontdev/module-zero-banner) | ✓ | Banners and sliders managed in the admin: CSS scroll snap and native swipe, and a small deferred script only for banners with several slides (arrows, dots, autoplay) |
 | Content | [`zerofront/module-zero-cms`](https://github.com/zerofrontdev/module-zero-cms) | ✓ | CMS pages and blocks built from typed components in a visual editor, with AI help; no page builder markup |
 | Content | [`zerofront/module-zero-blog`](https://github.com/zerofrontdev/module-zero-blog) | ✓ | A blog: posts written in the Zero CMS editor, categories, tags, authors, products in posts, comments |
 | Content | [`zerofront/module-zero-mega-menu`](https://github.com/zerofrontdev/module-zero-mega-menu) |  | A mega menu managed in the admin: full-width panels with subcategory columns, extra links and a promo card, plus the menu's own links; CSS only |
@@ -87,6 +87,9 @@ of `zerofront/zero`.
 
 ## For developers
 
+- `docs/getting-started.md`: install, where things are, how a page works, your first change.
+- `docs/migrating.md`: moving a live store to Zero, from Luma or a custom theme.
+- `docs/upgrading.md` and `docs/troubleshooting.md`: updates, and the usual first-week problems.
 - `docs/build.md`: the CSS and JavaScript build: the commands, the files, when to rebuild, the deploy.
 - `docs/extensions.md`: how a module adds templates, styles and HTMX fragments.
 - `docs/child-themes.md`: your own theme on top of Zero.
