@@ -78,9 +78,25 @@ under **Services > Sign in with Apple for Email Communication**.
 
 1. The service account is already connected to a store account: that
    account signs in.
-2. A store account has the same email:
-   - **Google, Apple**: they state the email is verified. The service is
-     connected to that account and the customer signs in.
+2. A store account has the same email: nobody is signed in. Anyone can
+   register any address in a store (with **Require Emails Confirmation**
+   off, Magento's default), so an email match alone never opens an account.
+   - **Google, Apple** state the email is verified:
+     - **The account has a password.** The customer signs in with that
+       password in the same browser within 15 minutes (or, if they don't
+       know it, resets it with **Forgot Your Password?** and then signs
+       in), and the service is connected then. Signing in with a service
+       already connected to the account does the same. No email is sent and
+       the account's password stays as it is. Later, they can always sign
+       in and connect the service under My Account > Sign-In Methods.
+     - **The account has no password** (it was made by a service). The
+       sign-in above works the same way, and a link is also emailed to the
+       account's address (valid one hour, used once). The link opens a page
+       that asks to confirm; only the button connects the service (a mail
+       scanner opening the link changes nothing). When the account's email
+       was never confirmed, connecting also removes the account's other
+       sign-in services and signs it out on every device: whoever made the
+       account with someone else's address loses it.
    - **Facebook** doesn't say whether the email is verified, so it never
      takes over an existing account. The customer is asked to sign in with
      their password once and connect Facebook under My Account.
@@ -88,10 +104,26 @@ under **Services > Sign in with Apple for Email Communication**.
    welcome email goes out. The customer can set a password later with
    **Forgot Your Password?**.
 
-**Require Emails Confirmation** (Customer Configuration) is respected. A
-verified email (Google, Apple) counts as confirmed. Otherwise (Facebook)
-Magento's confirmation link is sent, and the customer signs in after
-opening it.
+**Require Emails Confirmation** (Customer Configuration) is respected. For
+a new account, a verified email (Google, Apple) counts as confirmed.
+Otherwise (Facebook) Magento's confirmation link is sent, and the customer
+signs in after opening it. Connecting a service to an existing account
+never confirms it.
+
+When a service gets connected (after the sign-in above, by the emailed
+link, or from My Account) and the account already had another service, the
+message names every service now connected, e.g. "Google is connected. You
+can now sign in with it. Connected services: Facebook, Google. If you don't
+recognise one, disconnect it under My Account > Sign-In Methods." Only the
+services' names are shown. This is for an account a stranger registered
+with the customer's address and a password: a password reset ends the
+stranger's password and sessions, but a service they connected stays until
+the customer disconnects it. With no other service, the message is the
+usual "Google is connected. You can now sign in with it." The emailed link
+is confirmed by a browser that is usually not signed in, so there the list
+is shown only when the account is signed in in that browser; otherwise the
+usual message appears and the list is under My Account > Sign-In Methods
+after the next sign-in.
 
 With customer accounts shared per website, a service account can connect
 to one account per website.
@@ -116,6 +148,10 @@ sign-in.
   check (Core 1.0, §3.1.3.7).
 - **appsecret_proof** on Facebook's Graph API calls.
 - Secrets are stored encrypted (Magento's encrypted config fields).
+- The **emailed connect link** carries 43 random letters and digits, kept
+  only as a SHA-256, valid one hour and used once by a POST with the form
+  key. The page moves the token out of the address before it renders
+  (no Referer, no analytics hit), and the Email Log redacts it.
 - Apple returns with a cross-site POST, which carries no session cookie.
   Magento doesn't start a session for that request (as Magento_Paypal does
   for its returns), so the visitor's own session and cart stay as they

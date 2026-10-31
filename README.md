@@ -98,6 +98,8 @@ of `zerofront/zero`.
 - `docs/components.md`: the UI components (dialogs, menus, forms) and the JS rule:
   HTML and CSS first, then HTMX, JavaScript only when nothing else can do it.
 
+What changed in each release, and in which packages: [CHANGELOG.md](CHANGELOG.md).
+
 ## License
 
 OSL-3.0 or AFL-3.0, your choice, the same as Magento Open Source. Each package

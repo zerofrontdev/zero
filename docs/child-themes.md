@@ -242,9 +242,10 @@ Banners) are shared; only the placement is per theme.
 
 ## What not to override
 
-- `Zero_Core::session/bootstrap.phtml` and the `hx-*` attributes on shells
-  (account menu, mini-cart, compare/wish list sidebars, recently viewed): they
-  load per-visitor content into full-page-cached pages.
+- `Zero_Core::session/bootstrap.phtml`, the `data-zero-fragment` placeholders
+  (counters, account links, the compare/wish list sidebar) and the `hx-*`
+  attributes on shells (mini-cart, recently viewed): they load per-visitor
+  content into full-page-cached pages.
 - Form `form_key` inputs and the `zero:session-ready` triggers.
 - Payment form containers in checkout (`zero.checkout.payment.*`): payment
   modules plug into them.

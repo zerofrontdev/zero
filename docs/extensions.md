@@ -195,7 +195,13 @@ cached, `Cache-Control: no-store`) rendered through its own layout handle,
 loaded by `hx-get`. Trigger it with `hx-trigger="zero:session-ready from:body"`
 so it runs once the visitor's session exists; an element with
 `data-zero-fragment="name"` is filled by the session request itself
-(`Zero\Core\Controller\Session\Bootstrap::FRAGMENTS`). Forms get the
+(`Zero\Core\Controller\Session\Bootstrap::FRAGMENTS`; the counters,
+account links and the sidebar's compare/wish list), and kept in the visitor's
+browser for up to 20 minutes, so most page views make no request for it.
+A fragment whose block always renders something (`Bootstrap::NEVER_EMPTY`,
+the sidebar) and comes back empty has failed (production mode logs the
+exception and renders ''): it is left out of the answer, so the browser does
+not keep it and the next page asks again. Prefer it for content shown on many pages. Forms get the
 visitor's `form_key` from `session.js`; a cached `form_key` in the HTML is
 fine. Events the theme fires: `zero:session-ready`, `cart:updated`,
 `wishlist:updated`, `zero:consent`.
@@ -208,11 +214,15 @@ fine. Events the theme fires: `zero:session-ready`, `cart:updated`,
 | A store view at a path of the main domain (`/ua/`, `/ua/en/`), even from another website | `paths` argument of `Zero\Core\Plugin\Store\StorePathPrefix` in `etc/di.xml` |
 | Whole amounts for a currency (`4 800 ₴`) | `currencies` argument of `Zero\Core\Plugin\Directory\WholeAmounts` in `etc/frontend/di.xml` |
 | Product cards in a list of your own | `Magento_Catalog::product/list.phtml` with its `card_cache` argument (`Zero\Core\ViewModel\ProductCardCache`): one block cache entry per card |
+| Add to Cart on a product card of your own | render the `zero.quote.card` block with `setProduct()` first and show Add to Cart only when it gives nothing: a Price on Request product (Zero_QuoteRequest) gets "Request a Price" instead (see `product/list.phtml`) |
+| Another main control instead of the product page's qty and Add to Cart | set `main_control_html` on the add-to-cart block (`product.info.addtocart`, `.additional`, `.bundle`) before it renders: `Magento_Catalog::product/view/addtocart.phtml` shows it in their place, keeps Add to Wish List and Compare, drops the block's children (shortcut buttons, requisition list). Zero_QuoteRequest's `Plugin\RequestInsteadOfCart` does this for a Price on Request product |
 | Responsive product images (`<picture>`, WebP) | `Zero\Core\Model\Image\ProductPicture::getSrcsets()`; `bin/magento zero:images:warm` after an import |
 | Prices outside a price box (badges, analytics) | `Zero\Core\Model\Pricing\CachedPrices::get()` |
+| Showing a PriceInfo amount, or comparing it with a threshold from config | `Zero\Core\Model\Pricing\Amounts`: `format()` (the amount is already in the display currency: never `convertAndFormat()` it), `toBase()` before comparing with a base-currency threshold. Unit-test with `Zero\Core\Test\Unit\Fixture\RatePriceCurrency` (rate 0.8) |
 | A badge on product cards and pages | `Zero\Core\Api\ProductBadgeProviderInterface`, registered as a `providers` item of `Zero\Core\ViewModel\ProductBadges` (see Zero_ProductLabels) |
 | A storefront tracker that respects cookie consent | `Zero\Consent\Model\Trackers` (di.xml) and `window.zeroConsent.get()` |
 | Sending email, SES, the Email Log | nothing to do: `Zero_Mail` wraps Magento's transport |
+| Google reCAPTCHA (`Magento_ReCaptcha*`) on a Zero form | Render the form's `form.additional.info`-type child and keep the ButtonLock `disabled`; the theme's `recaptcha.phtml` and `Zero_Core::js/recaptcha.js` do the rest (v2 checkbox, v2 invisible, v3). Checkout `place_order` and the coupon via REST are not covered |
 
 ## Ready-made compat modules
 
