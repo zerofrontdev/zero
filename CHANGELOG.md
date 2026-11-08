@@ -1,5 +1,13 @@
 # Changelog: zerofront/zero
 
+## 1.3.8
+
+Personalize gets three settings that lower its AWS bill. The other packages only follow the version number. Update with `composer update 'zerofront/*' -W`.
+
+Packages that changed:
+
+- [`zerofront/module-zero-personalize`](https://github.com/zerofrontdev/module-zero-personalize/blob/main/CHANGELOG.md)
+
 ## 1.3.7
 
 One new free module: Personalize, product recommendations from Amazon Personalize. The other packages only follow the version number. Update with `composer update 'zerofront/*' -W`, then `bin/magento setup:upgrade`.
