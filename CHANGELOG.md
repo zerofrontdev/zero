@@ -1,5 +1,13 @@
 # Changelog: zerofront/zero
 
+## 1.3.7
+
+One new free module: Personalize, product recommendations from Amazon Personalize. The other packages only follow the version number. Update with `composer update 'zerofront/*' -W`, then `bin/magento setup:upgrade`.
+
+Packages that changed:
+
+- [`zerofront/module-zero-personalize`](https://github.com/zerofrontdev/module-zero-personalize/blob/main/CHANGELOG.md)
+
 ## 1.3.6
 
 Fixes from a review of every module: payments, money, sign-in, privacy and stability. Several modules change behaviour on purpose: read the entries of the packages you use before updating, in particular Stripe (cards are authorised first and captured after the order is saved), Abandoned Cart (guests need a newsletter subscription), Social Login (an existing account is connected only after a password sign-in or an emailed link) and Checkout (a payment for a cancelled order is flagged, not booked).

@@ -72,6 +72,7 @@ of `zerofront/zero`.
 | Marketing | [`zerofront/module-zero-product-feed`](https://github.com/zerofrontdev/module-zero-product-feed) |  | The catalog as XML feeds for Google Merchant Center, Hotline, Rozetka and Prom.ua, one per store view |
 | Marketing | [`zerofront/module-zero-consent`](https://github.com/zerofrontdev/module-zero-consent) |  | A cookie consent banner and settings for every tracker (GDPR), Global Privacy Control and "Do Not Sell" (CCPA) |
 | Marketing | [`zerofront/module-zero-google-analytics`](https://github.com/zerofrontdev/module-zero-google-analytics) |  | GA4 e-commerce events with gtag.js or Google Tag Manager, with Consent Mode v2 |
+| Marketing | [`zerofront/module-zero-personalize`](https://github.com/zerofrontdev/module-zero-personalize) |  | Product recommendations from Amazon Personalize in batch mode: similar products on the product page and picks for every signed-in customer, learned weekly from the store's orders, carts and wishlists, for a few dollars a month on your own AWS account |
 | Marketing | [`zerofront/module-zero-marketing-pixels`](https://github.com/zerofrontdev/module-zero-marketing-pixels) |  | Meta, TikTok, Pinterest and Microsoft Clarity from an ID in the admin each, loaded only after consent, fed by the storefront's GA4 e-commerce events |
 | Customers | [`zerofront/module-zero-social-login`](https://github.com/zerofrontdev/module-zero-social-login) |  | Sign in and sign up with Google, Apple or Facebook, without third-party libraries |
 | Customers | [`zerofront/module-zero-returns`](https://github.com/zerofrontdev/module-zero-returns) |  | Returns (RMA): the customer asks from My Account, the store approves, receives and refunds in Sales > Returns, with messages and emails |
@@ -107,9 +108,4 @@ has the full text and a `NOTICE.md`.
 
 ---
 
-<a href="https://vilmate.com"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/zerofrontdev/zero/main/docs/images/vilmate-logo-dark.svg">
-  <img src="https://raw.githubusercontent.com/zerofrontdev/zero/main/docs/images/vilmate-logo.svg" alt="Vilmate" height="34" align="right">
-</picture></a>
-
-Zero is made by [Fixstacks](https://fixstacks.com) in partnership with [Vilmate](https://vilmate.com), a software development company.
+Zero is made by [Fixstacks](https://fixstacks.com).
