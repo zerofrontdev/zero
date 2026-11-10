@@ -1,5 +1,14 @@
 # Changelog: zerofront/zero
 
+## 1.3.9
+
+Two new free modules: AI Assistant, a chat with Claude in the admin that does the work, and Claude Connector (Zero_Mcp), the store as a connector in the Claude app. The other packages only follow the version number. Update with `composer update 'zerofront/*' -W`, then `bin/magento setup:upgrade`.
+
+Packages that changed:
+
+- [`zerofront/module-zero-ai-assistant`](https://github.com/zerofrontdev/module-zero-ai-assistant/blob/main/CHANGELOG.md)
+- [`zerofront/module-zero-mcp`](https://github.com/zerofrontdev/module-zero-mcp/blob/main/CHANGELOG.md)
+
 ## 1.3.8
 
 Personalize gets three settings that lower its AWS bill. The other packages only follow the version number. Update with `composer update 'zerofront/*' -W`.
